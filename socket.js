@@ -1,5 +1,6 @@
 module.exports = function (io) {
-  io.sockets.on('connection', function (socket) {
+  io.on('connection', function (socket) {
+    console.log('A user joined');
     socket.on('disconnect', function (data) {
       // Stuff
     });
@@ -18,6 +19,7 @@ module.exports = function (io) {
 
     // Refresh All
     socket.on('refresh', function (data) {
+      console.log('refreshed');
       socket.broadcast.emit('refresh', data);
     });
 
