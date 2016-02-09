@@ -5,12 +5,10 @@ var io = require('socket.io')(http);
 
 app.use(express.static(__dirname + '/public'));
 
-// HOME
 app.get('/', function (req, res, next) {
   res.render('index.html');
 });
 
-// SOCKET
 require('./socket.js')(io);
 
 http.listen(3000, function () {

@@ -1,41 +1,46 @@
-/* global fabric */
+/* global fabric, $ */
 // var c = document.getElementById('canvas');
 
+var canvasObjects = {
+  redCircle: function () {
+    var redCircle = new fabric.Circle({
+      top: 100,
+      left: 100,
+      radius: 30,
+      fill: 'crimson',
+      stroke: 'black',
+      strokeWidth: 5
+    });
+    canvas.add(redCircle);
+  }
+};
+
+$(document).ready(function () {
+  var buttons = [];
+  for (var object in canvasObjects) {
+    var button = '<button onclick="addObject(\'' + object + '\')">' + object + '</button>';
+    buttons.push(button);
+  }
+  $('#canvas-objects').append(buttons);
+});
+
 var canvas = new fabric.Canvas('canvas');
-var io = io.connect();
-redCircle();
 
-// Socket Events
-canvas.on('object:moving', function () {
-  var data = JSON.stringify(canvas);
-  console.log('emit moving');
-  io.emit('refresh', data);
+$('#draw-mode').on('click', function () {
+  console.log(this);
+  canvas.isDrawingMode = !canvas.isDrawingMode;
+  if (canvas.isDrawingMode) { $(this).html('Draw Mode: On'); }
+  if (!canvas.isDrawingMode) { $(this).html('Draw Mode: Off'); }
 });
 
-// Socket Listeners
-io.on('refresh', function (data) {
-  canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
-});
-
-// Add Object
-function redCircle () {
-  console.log('make circle');
-  var circRed = new fabric.Circle({
-    top: 100,
-    left: 100,
-    radius: 30,
-    fill: 'crimson',
-    stroke: 'black',
-    strokeWidth: 3
-  });
-  canvas.add(circRed);
+function addObject (obj) {
+  canvasObjects[obj]();
 }
 
 // Delete Button
 window.deleteObject = function () {
   canvas.getActiveObject().remove();
 };
-
 document.addEventListener('keydown', function (event) {
   console.log(event);
   if (event.keyCode === 8 || event.keyCode === 46) {
@@ -44,13 +49,4 @@ document.addEventListener('keydown', function (event) {
   }
 }, false);
 
-var canvasObjects = {
-  redCircle: new fabric.Circle({
-    top: 100,
-    left: 100,
-    radius: 30,
-    fill: 'crimson',
-    stroke: 'black',
-    strokeWidth: 5
-  })
-};
+canvas.add(canvasObjects.redCircle);

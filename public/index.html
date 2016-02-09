@@ -3,22 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>ShareBoard</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"></link>
     <script src="/socket.io/socket.io.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.2.0/fabric.all.min.js'></script>
-<!--     // <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
   </head>
   <body>
+      <label>Options   </label><button id="draw-mode">Draw Mode: Off</button><br />
+      <label>Objects   </label><span id="canvas-objects"></span>
 
     <canvas id='canvas' width='1200' height='1000' />
 
-    <!-- <div id="share-board"></div> -->
     <script src="js/main.js"></script>
-    <!-- <script type="text/babel"> -->
+    <script src="js/socket.js"></script>
     </script>
   </body>
 </html>
