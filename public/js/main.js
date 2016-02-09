@@ -12,6 +12,28 @@ var canvasObjects = {
       strokeWidth: 5
     });
     canvas.add(redCircle);
+  },
+  blueCircle: function () {
+    var blueCircle = new fabric.Circle({
+      top: 100,
+      left: 200,
+      radius: 30,
+      fill: 'blue',
+      stroke: 'black',
+      strokeWidth: 5
+    });
+    canvas.add(blueCircle);
+  },
+  greenCircle: function () {
+    var greenCircle = new fabric.Circle({
+      top: 100,
+      left: 300,
+      radius: 30,
+      fill: 'green',
+      stroke: 'black',
+      strokeWidth: 5
+    });
+    canvas.add(greenCircle);
   }
 };
 
@@ -49,4 +71,6 @@ document.addEventListener('keydown', function (event) {
   }
 }, false);
 
-canvas.add(canvasObjects.redCircle);
+canvasObjects.redCircle();
+canvasObjects.blueCircle();
+canvasObjects.greenCircle();
